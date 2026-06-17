@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>karectl-evolution.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="from-tre-to-karectl-our-evolution-of-the-trusted-research-environment-in-the-age-of-ai">From TRE to KARECTL: Our Evolution of The Trusted Research Environment in the Age of AI</h1>
+<p>Behind the scenes, Lancashire Teaching Hospitals NHS Foundation Trust (LTH) has been pursuing what, at times, feels like an unattainable ambition: to deliver a secure, digital infrastructure that can effortlessly empower both humans and agents to harness the vast amounts of data to support lower-cost, higher-quality healthcare services. While, many organisations likely harbour similar ambitions both in and outside of the healthcare space, working towards it has demanded a mini-revolution on several technical and organisational fronts, that have been quietly playing out under the louder backdrop of the ongoing <a href="https://pubmed.ncbi.nlm.nih.gov/42052564/">AI health arms race</a>. At LTH, the need to facillitate AI-supported research and working practices at scale is growing at pace [XXX]. To deliver on our goal, we have been actively <a href="https://aisel.aisnet.org/jais/vol10/iss5/1/">infrastructuring</a> - that is, performing the continuous development of foundational elements (data standards, data governance workflows, analytics tooling and reimagining of operational practices) so AI research and agentic capabilities for day-to-day work practices can be delivered through more intelligent, automated mechanisms across a secure, scalable and sustainable localised infrastructure.</p>
+<p>In this post, we will begin to highlight our recent journey developing trusted research environments (TREs) and the requirements driving the need to deliver new TRE characteristics that mitigate vendor lock-in and exploit emerging AI capabilities to stenghten TRE administration and security. Alongside the secure analytics platform development being undertaken at LTH, multiple strands of work are on-going in parallel to support our wider goal:</p>
+<ul>
+<li>Data Harmonisation
+<ul>
+<li>See our work <a href="https://###">here</a> on the development of tools to standardise disparate clinical datasets through OMOP and the creation of <a href="https://###">agentic tools</a> for real-world evidence (RWE) studies.</li>
+</ul>
+</li>
+<li>Data Project Governance &amp; Infrastructure Automation
+<ul>
+<li><a href="https://zenodo.org/records/19366020">Learn more</a> about CR8TOR, a metadata-driven framework for the semi-automated orchestration of TRE project governance, data ingestion, and infrastructure resources.</li>
+<li><a href="https://www.youtube.com/watch?v=aRrZpoF2YeA">Watch</a> a walkthrough of the CR8TOR framework in a federated setting, developed as part of the FOCUS-5 project.</li>
+</ul>
+</li>
+<li>Secure Research Analytics &amp; Data Access
+<ul>
+<li><a href="https://docs.k8tre.org/latest/">K8TRE</a> is a vendor-agnostic trusted research analytics environment built on Kubernetes.</li>
+<li>Creating trusted research and analytics environments that enable researchers, clinicians, and partners to collaborate while maintaining strict governance and security standards.</li>
+</ul>
+</li>
+<li>Local Compute, Agentic Development &amp; Runtime Environment
+<ul>
+<li>Developing local compute and runtime environments that support the secure development, testing, and deployment of agentic AI capabilities.</li>
+</ul>
+</li>
+</ul>
+<h2 id="towards-tre-ai-conformity">Towards TRE AI-Conformity</h2>
+<p>Recognition of the need to innovate beyond traditional approaches to Trusted Research Environment (TRE) infrastructure has played a key role in LTH's digital transformation journey. Our initial effort to develop a secure analytics environment emerged from a practical organisational need to deliver secure access to clinical data for research at a significantly lower cost than available cloud-vendor frameworks (e.g. AzureTRE), while avoiding long-term vendor lock-in. In addition, we were keen to establish an open-source community around any infrastructure developed to share development effort, ensure long-term support, build on existing expertise within the research software engineering (RSE) community, and mitigate against common risks associated with in-house software projects (more on our early thinking around this <a href="https://LINKEDIN">here</a>).</p>
+<p>Given these requirements, we began to map the core capabilities and services of traditional TRE implementations and consider how to design an open-source, vendor-agnostic TRE solution based on Kubernetes (K8s) that could operate across diverse cloud and on-premises environments. Early exploration of a platform-agnostic TRE framework was undertaken through LTH's initial research analytics platform (KRAP?), where we developed an understanding of how a microservices-based approach could provide a more flexible and sustainable foundation for supporting secure data research projects. The lessons learned from this platform directly informed the architectural principles that later shaped K8TRE.</p>
+<p>Building on this early work, and through wider engagement with the UK's health informatics and research software engineering communities, we led the technical development of <a href="https://docs.k8tre.org/latest/">K8TRE</a> in collaboration with Lancaster University, the University of Dundee (UoD), and University College London (UCL) as part of the TREvolution project. The project focused on developing a modular, cloud-agnostic, <a href="https://satre-specification.readthedocs.io/en/stable/">SATRE-compliant</a> Kubernetes-native TRE architecture informed by a broad range of TRE operator requirements. A key aspect of K8TRE's implementation is the <strong>agnostics layer</strong>, which provides abstractions for infrastructure-dependent capabilities (e.g. secret providers, networking, identity providers), enabling TRE application services (e.g. secure workspaces, observability, project governance) to operate regardless of the underlying cloud or on-premises infrastructure.</p>
+<p><img src="image.png" alt="alt text"></p>
+<p>Through the adoption of open cloud-native standards and modern CICD deployment principles (i.e. GitOps), <a href="https://github.com/k8tre/k8tre">K8TRE</a> provides a base TRE framework that affords organisations greater flexibility, portability, and a sustainable alternative to cloud-vendor frameworks.</p>
+<p>With the growing demand from health informatics researchers, clinicans, developers and healthcare administrators at LTH to undertake AI-driven research activities and develop agent-based working practices, we have begun to explore and consider the underlying abstractions and runtime capabilities required to deliver a AI-ready TRE that is AI-conformant and can reliably support a broad range of emerging AI applications and artifical intelliegnce use-cases within a TRE:</p>
+<ul>
+<li>AI research workloads from TRE projects</li>
+<li>R&amp;D workspace AI-assistants (Marimo)</li>
+<li>Agent development &amp; secure deployment runtime environments</li>
+<li>TRE infrastructure maintenance agents (Auto-Remediation)</li>
+<li>TRE Cybersecurity agents (Breslin)</li>
+</ul>
+<p>Indeed, we believe existing TRE capabilities (secure access to sensitive data, policy-driven access controls, scalable workload orchestration, reproducible execution environments, data governance and auditability) required to serve researchers today are equally applicable to an emerging class of AI-driven healthcare applications developed to support day-to-day operations. The same TRE infrastructure that enables a researcher to analyse sensitive healthcare data can also provide the nessasary foundations for deploying AI agents that assist clinicians, automate operational processes, monitor system performance, or coordinate complex workflows across organisational boundaries.</p>
+<p>This convergence of research infrastructure and operational AI requirements is re-shaping how we envision TREs will serve and support our broader ambition going forward. Rather than viewing TREs as isolated research platforms, we increasingly see them as a foundational component of a broader digital ecosystem capable of supporting both human and machine consumers of sensitive data.</p>
+<h2 id="why-make-a-tre-ai-conformant">Why Make a TRE AI-Conformant?</h2>
+<p>Researchers and emerging agents require similar TRE capabilities/ support</p>
+<h3 id="local-model-hosting">Local Model Hosting</h3>
+<p>Healthcare organisations increasingly require the ability to run AI models locally.. reduces data sovereignty concerns...enables orgs to maintain greater control over sensitive information.</p>
+<h3 id="minimising-operational-overhead">Minimising Operational Overhead</h3>
+<p>NHS orgs are resource constrained...Agentix support can help automate operational tasks traditionally performed by platform engineers, analysts, and support teams.. reducing administrative overhead</p>
+<h3 id="supporting-agentic-applications">Supporting Agentic Applications</h3>
+<p>NHS has increasing rely on autonomous agents capable of performing multi-step reasoning, interacting with systems, orchestrating workflows, and generating insights from complex datasets. TRE infrastructure must therefore support agents not only during development but also at runtime.</p>
+<h3 id="portability-across-organisations">Portability Across Organisations</h3>
+<p>By adopting open standards and cloud-native deployment patterns, AI agents developed within one NHS organisation can be deployed within another without requiring significant re-engineering.
+This has the potential to create a reusable ecosystem of healthcare agents that can be shared between NHS Trusts while maintaining local governance controls.</p>
+<h3 id="supporting-the-ai-development-lifecycle">Supporting the AI Development Lifecycle</h3>
+<p>The infrastructure required to build, evaluate, deploy, monitor, and govern AI systems is becoming as important as the models themselves. KARECTL therefore aims to support the complete lifecycle of AI development, including model experimentation, evaluation, deployment, monitoring, governance, and continuous improvement.</p>
+<h2 id="karectl-architecture">KARECTL Architecture</h2>
+<p><strong>TODO: Detail AI-conformance aspects of KARECTL</strong></p>
+<p><img src="image-1.png" alt="alt text"></p>
+<ul>
+<li>Local LLM Provision (LLM Gateway, routing)
+<ul>
+<li>Migiagte need to</li>
+</ul>
+</li>
+<li>AI-assisted researcher workspace</li>
+<li>Agentic Runtime
+<ul>
+<li>Observability / auditing (langfuse)</li>
+<li>Conversational UIs (openwebui)</li>
+<li>Model inference (vllm)</li>
+</ul>
+</li>
+<li>Agent Workflow Orchestration</li>
+<li>Infrastructure Agents
+<ul>
+<li>auto-remediation and operational assistance</li>
+<li>adversarial / cyber</li>
+</ul>
+</li>
+</ul>
+<h2 id="emerging-challenges">Emerging Challenges</h2>
+<p><strong>TODO</strong>
+Map out the challenges of supporting AI-comformity from a TRE operator perspective</p>
+<h3 id="ensuring-security-privacy--trust">Ensuring Security, Privacy &amp; Trust</h3>
+<p>Increase attack surface. K8s/LLM deployments ntroduce potential security vulnerabilities that need to be managed
+How should AI agents be governed?</p>
+<h3 id="governing-agent-behaviour">Governing Agent Behaviour</h3>
+<p>Relate to broader Q's around agents but how to control agents that are making decisions and execute actions in a TRE framework.. guardrails. Break-glass..</p>
+<h3 id="managing-costs">Managing Costs</h3>
+<ul>
+<li>Large-scale AI infrastructure can become expensive very quick...how does this play against the notion that KARECTL is low cost</li>
+<li>Allow those teams to focus on higher-value engineering activities rather than repetitive operational tasks.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>The shift in how we think about TREs has evolved significantly over the last 5 years.</p>
+<p>Historically, TREs designed primarily as secure environments for researchers to access sensitive data. Increasingly, however, we believethey are becoming platforms that should support a diverse ecosystem of participants, including researchers, analysts, clinicians, applications, AI models, and autonomous agents.</p>
+<p>This evolution requires a new set of architectural characteristics..</p>
+<ul>
+<li>cloud-agnostic deployment</li>
+<li>AI-native capabilities</li>
+<li>agent-ready runtimes</li>
+<li>new forms of governance</li>
+<li>observability &amp; auditing.</li>
+</ul>
+<p>Significant challenges remain. Cybersecurity threats continue to evolve, governance models must adapt to autonomous systems, and organisations need to develop new expertise spanning cloud-native infrastructure, platform engineering, AI engineering, and security operations.</p>
+<p>Yet the opportunity is unbounded. By building AI-conformant Trusted Research Environments, NHS organisations can create a common foundation capable of supporting research, innovation, operational intelligence, and future agentic healthcare systems. In doing so, the TRE evolves from a secure data access platform into a secure execution environment for both human and machine intelligence.</p>
+
+</body>
+</html>
