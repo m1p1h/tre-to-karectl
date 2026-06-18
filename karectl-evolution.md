@@ -1,8 +1,8 @@
 # From TRE to KARECTL: Our Evolution of The Trusted Research Environment in the Age of AI
 
-Behind the scenes, Lancashire Teaching Hospitals NHS Foundation Trust (LTH) has been pursuing what, at times, feels like an unattainable ambition: to deliver a secure, digital infrastructure that can effortlessly empower both humans and agents to harness the vast amounts of data to support lower-cost, higher-quality healthcare services. While, many organisations likely harbour similar ambitions both in and outside of the healthcare space, working towards it has demanded a mini-revolution on several technical and organisational fronts, that have been quietly playing out under the louder backdrop of the ongoing [AI health arms race](https://pubmed.ncbi.nlm.nih.gov/42052564/). At LTH, the need to facillitate AI-supported research and working practices at scale is growing at pace [XXX]. To deliver on our goal, we have been actively [infrastructuring](https://aisel.aisnet.org/jais/vol10/iss5/1/) - that is, performing the continuous development of foundational elements (data standards, data governance workflows, analytics tooling and reimagining of operational practices) so AI research and agentic capabilities for day-to-day work practices can be delivered through more intelligent, automated mechanisms across a secure, scalable and sustainable localised infrastructure. 
+Behind the scenes, Lancashire Teaching Hospitals NHS Foundation Trust (LTH) has been pursuing an ambitious goal: to deliver a secure, digital infrastructure that can effortlessly empower both humans and agents to harness the vast amounts of data to support lower-cost, higher-quality healthcare services. While, many organisations likely harbour similar ambitions both in and outside of the healthcare space, working towards it has demanded a mini-revolution on several technical and organisational fronts, that have been quietly playing out under the louder backdrop of the ongoing [AI health arms race][XXX](https://pubmed.ncbi.nlm.nih.gov/42052564/). At LTH, the need to facillitate AI-supported research and working practices at scale is growing at pace [XXX]. To deliver on our goal, over the past 6 years we have been actively [infrastructuring](https://aisel.aisnet.org/jais/vol10/iss5/1/)[XXX] - that is, performing the continuous development of key foundational elements (standardisation of data, automation of information governance, availability of analytical toolchains and reshaping operational practices) so AI research and agentic capabilities for day-to-day work practices can be delivered through more intelligent, automated mechanisms across a secure, scalable and sustainable localised infrastructure. 
 
-In this post, we will begin to highlight our recent journey developing trusted research environments (TREs) and the requirements driving the need to deliver new TRE characteristics that mitigate vendor lock-in and exploit emerging AI capabilities to stenghten TRE administration and security. Alongside the secure analytics platform development being undertaken at LTH, multiple strands of work are on-going in parallel to support our wider goal:
+In this post, we will begin to highlight our recent journey developing trusted research environments (TREs) and the requirements driving our need to deliver next-generation TRE frameworks that posess new characteristics that can mitigate cloud vendor lock-in risks and better exploit emerging AI capabilities to enhance TRE administration processes and harden TRE security against looming AI-enabled threats [XXX]. Alongside development of TRE infrastructure at LTH, critical complementary work is happening to help meet our wider ambition:
 
 - Data Harmonisation
     - See our work [here](https://###) on the development of tools to standardise disparate clinical datasets through OMOP and the creation of [agentic tools](https://###) for real-world evidence (RWE) studies.
@@ -17,96 +17,78 @@ In this post, we will begin to highlight our recent journey developing trusted r
 
 ## Towards TRE AI-Conformity 
 
-Recognition of the need to innovate beyond traditional approaches to Trusted Research Environment (TRE) infrastructure has played a key role in LTH's digital transformation journey. Our initial effort to develop a secure analytics environment emerged from a practical organisational need to deliver secure access to clinical data for research at a significantly lower cost than available cloud-vendor frameworks (e.g. AzureTRE), while avoiding long-term vendor lock-in. In addition, we were keen to establish an open-source community around any infrastructure developed to share development effort, ensure long-term support, build on existing expertise within the research software engineering (RSE) community, and mitigate against common risks associated with in-house software projects (more on our early thinking around this [here](https://LINKEDIN)).
+Recognition of the need to innovate beyond traditional approaches to Trusted Research Environment (TRE) infrastructure has played a central role in LTH's digital transformation journey. Our initial effort to develop a secure analytics environment emerged from a practical organisational need to deliver secure access to clinical data for research at a significantly lower cost than available cloud-vendor frameworks (e.g. AzureTRE), while avoiding long-term vendor lock-in. In addition, we were keen to establish an open-source community around any infrastructure developed to ensure long-term support of software, support knowledge exchange within the research software engineering (RSE) community and to mitigate the risks associated with closed software development projects the NHS has often been susceptiable [XXX] (more on our early thinking around this [here](https://LINKEDIN)).
 
-Given these requirements, we began to map the core capabilities and services of traditional TRE implementations and consider how to design an open-source, vendor-agnostic TRE solution based on Kubernetes (K8s) that could operate across diverse cloud and on-premises environments. Early exploration of a platform-agnostic TRE framework was undertaken through LTH's initial research analytics platform (KRAP?), where we developed an understanding of how a microservices-based approach could provide a more flexible and sustainable foundation for supporting secure data research projects. The lessons learned from this platform directly informed the architectural principles that later shaped K8TRE.
+Given these requirements, we began to map the core capabilities and services of traditional TRE implementations and consider how to design an open-source, vendor-agnostic TRE based on Kubernetes (K8s) that could operate across diverse cloud and on-premises environments. Early exploration of a platform-agnostic TRE framework was undertaken through LTH's initial research analytics platform (KRAP/LSCSDE/LANDer)[XXX], where we developed a deeper understanding of how a microservices-based approach could provide a more flexible and sustainable foundation for supporting secure data research projects. The lessons learned from this early TRE platform development work directly informed the architectural principles that later shaped the implementation of K8TRE [XXX] - an open-source Kubernetes-native trusted research environment.
 
-Building on this early work, and through wider engagement with the UK's health informatics and research software engineering communities, we led the technical development of [K8TRE](https://docs.k8tre.org/latest/) in collaboration with Lancaster University, the University of Dundee (UoD), and University College London (UCL) as part of the TREvolution project. The project focused on developing a modular, cloud-agnostic, [SATRE-compliant](https://satre-specification.readthedocs.io/en/stable/) Kubernetes-native TRE architecture informed by a broad range of TRE operator requirements. A key aspect of K8TRE's implementation is the **agnostics layer**, which provides abstractions for infrastructure-dependent capabilities (e.g. secret providers, networking, identity providers), enabling TRE application services (e.g. secure workspaces, observability, project governance) to operate regardless of the underlying cloud or on-premises infrastructure.
+Building on that foundation, and through wider engagement with the UK’s health informatics and research software engineering communities (including DARE), we led K8TRE’s technical development within TREvolution, in collaboration with Lancaster University, the University of Dundee (UoD), and University College London (UCL) [XXX]. The project focused on developing a modular, cloud-agnostic, [SATRE-compliant](https://satre-specification.readthedocs.io/en/stable/) Kubernetes-native TRE that could satisfy a broad range of TRE operator requirements. A key aspect of K8TRE's design is the **agnostics layer**, providing key abstractions for infrastructure-dependent capabilities (e.g. secret providers, networking, identity providers), enabling TRE application services (e.g. secure workspaces, observability, project governance) to operate regardless of the underlying cloud or on-premises infrastructure.
 
 ![alt text](k8tre-arch.png)
 
-Through the adoption of open cloud-native standards and modern CICD deployment principles (i.e. GitOps), [K8TRE](https://github.com/k8tre/k8tre) provides a base TRE framework that affords organisations greater flexibility, portability, and a sustainable alternative to cloud-vendor frameworks.
+Through the adoption of open cloud-native technologies and modern CI/CD practices (including GitOps), K8TRE has provided a flexible, portable, and sustainable TRE foundation as an alternative to cloud-vendor frameworks. At the same time, demand at LTH is evolving: researchers, clinicians, developers, and healthcare administrators increasingly need TRE environments that can support AI-driven research and agent-based workflows. In response, we have begun to extend our focus beyond vendor-agnostic design to explore AI’s role in trusted research infrastructure, including the practical opportunities and challenges of building AI-conformant TREs. In this context, we see AI-conformance as an important characteristic for next-generation TREs, meaning AI research workloads and agentic workflows are supported under the same governance, security, and audit standards that apply to human-led research that relies on access to sensitive datasets.
 
-With the growing demand from health informatics researchers, clinicans, developers and healthcare administrators at LTH to undertake AI-driven research activities and develop agent-based working practices, we have begun to explore and consider the underlying abstractions and runtime capabilities required to deliver a AI-ready TRE that is AI-conformant and can reliably support a broad range of emerging AI applications and artifical intelliegnce use-cases within a TRE: 
+In practical terms, we have begun to translate this shift in focus into practical areas of implementation. In particular, building on K8TRE we have begun to (i) investigate where AI can be safely embedded into day-to-day research environment operations, (ii) address technical gaps to support AI research & agentic workflows, and (iii) strengthen platform resilience:
 
-- AI research workloads from TRE projects
-- R&D workspace AI-assistants (Marimo)
-- Agent development & secure deployment runtime environments
-- TRE infrastructure maintenance agents (Auto-Remediation)
-- TRE Cybersecurity agents (Breslin)
+### **AI research workloads from TRE projects**
+LTH is establishing new, on-premise GPU-enabled compute hardware to serve AI training and inference workloads from trusted research projects governed and managed through our secure analytics framework (KARECTL) deployed within a local Kubernetes cluster.
 
-Indeed, we believe existing TRE capabilities (secure access to sensitive data, policy-driven access controls, scalable workload orchestration, reproducible execution environments, data governance and auditability) required to serve researchers today are equally applicable to an emerging class of AI-driven healthcare applications developed to support day-to-day operations. The same TRE infrastructure that enables a researcher to analyse sensitive healthcare data can also provide the nessasary foundations for deploying AI agents that assist clinicians, automate operational processes, monitor system performance, or coordinate complex workflows across organisational boundaries.
+### **TRE agent development and secure deployment runtime**
+To support secure in-house development and deployment of agents that depend on LTH's sensitive data assets (e.g. EHR, PIFU) we have begun to implement a runtime environment within our Kubernetes TRE that includes locaised model provisioning supported by vLLM, allowing agents to exploit privacy-preserving LLM inference. In addition, this runtime integrates agentic workflow support (n8n, MLFlow), secure agent observability (i.e. langfuse) for monitoring and governance auditing activities with optional privacy controls to mask sensitive information from traces.
 
-This convergence of research infrastructure and operational AI requirements is re-shaping how we envision TREs will serve and support our broader ambition going forward. Rather than viewing TREs as isolated research platforms, we increasingly see them as a foundational component of a broader digital ecosystem capable of supporting both human and machine consumers of sensitive data.
+### **TRE AI-assisted workspaces**
+We are piloting secure research workspaces that embed AI-assisted notebook capabilities using Marimo integrated with locally provisioned large language models (LLMs) to better support analytical and coding research activities. 
 
-## Why Make a TRE AI-Conformant?
+### **TRE infrastructure maintenance agents**
+We are undertaking development and assessment of operational agents to better support TRE platform engineers and administrators. In particular, we have begun to develop and trial agents with Site Reliability Engineering (SRE) skillsets that can detect issues within the TRE through contextual signals provided via KARECTL's observability stack and propose (or execute) approved remediations based on a real-time understanding of the TRE state through the Kagent framework for Kubernetes. We believe such capabilities will become important to ensure TRE engineer resource requirements do not scale with increased research and agent usage.
 
-Researchers and emerging agents require similar TRE capabilities/ support
-
-### Local Model Hosting
-
-Healthcare organisations increasingly require the ability to run AI models locally.. reduces data sovereignty concerns...enables orgs to maintain greater control over sensitive information.
-
-### Minimising Operational Overhead
-
-NHS orgs are resource constrained...Agentix support can help automate operational tasks traditionally performed by platform engineers, analysts, and support teams.. reducing administrative overhead
-
-### Supporting Agentic Applications
-
-NHS has increasing rely on autonomous agents capable of performing multi-step reasoning, interacting with systems, orchestrating workflows, and generating insights from complex datasets. TRE infrastructure must therefore support agents not only during development but also at runtime.
-
-### Portability Across Organisations
-
-By adopting open standards and cloud-native deployment patterns, AI agents developed within one NHS organisation can be deployed within another without requiring significant re-engineering.
-This has the potential to create a reusable ecosystem of healthcare agents that can be shared between NHS Trusts while maintaining local governance controls.
-
-### Supporting the AI Development Lifecycle
-
-The infrastructure required to build, evaluate, deploy, monitor, and govern AI systems is becoming as important as the models themselves. KARECTL therefore aims to support the complete lifecycle of AI development, including model experimentation, evaluation, deployment, monitoring, governance, and continuous improvement.
-
+### **TRE cybersecurity agents**
+We are investigating a collection of cybersecurity-focused agents for TREs that aim to support continuous security testing, vulnerability discovery, and defensive validation of a TRE's controls. For example, we are developing red-team capture-the-flag (CTF) agents (Breslin) for Kubernetes-native TREs that can be directed to undertake adversarial behaviours (e.g. unauthorised lateral movement across controlled boundaries) within the target environment, emulating actions that could be performed by different TRE stakeholders (i.e. researchers, platform engineers) to highlight security vulnerabilities.   
 
 ## KARECTL Architecture
 
-**TODO: Detail AI-conformance aspects of KARECTL**
+**TODO**
+
+KARECTL, LTH's implementation of K8TRE is being designed to provide a secure, scalable, AI-conformant TRE framework operators can deploy to support researcher and the agent workloads outlined above. 
 
 ![alt text](karectl-arch.png)
 
-- Local LLM Provision (LLM Gateway, routing)
-    - Migiagte need to
-- AI-assisted researcher workspace
-- Agentic Runtime
-    - Observability / auditing (langfuse)
-    - Conversational UIs (openwebui)
-    - Model inference (vllm) 
-- Agent Workflow Orchestration
-- Infrastructure Agents
-    - auto-remediation and operational assistance
-    - adversarial / cyber
+We have extended KARECTL with the following technical capabilities:
 
+**Local model provisioning and routing (LLM gateway, vLLM)**
+KARECTL's 'agentgateway' service provides a locally governed LLM gateway that allows agents operating within the TRE to connect to a collection of model inference backends through a single endpoint. In particular, the agentgateway integrates with KARECTL's agnostics services including keycloak for supporting JWT-based access control. This allows internal agents to perform authenticated OpenAPI requests that can be routed to a variety model inference pools. The gateway implements a dynamic content-based routing method that inspects the agent's request, extracts the model name requested (e.g. Qwen2.5) and attempts to route to an available pool serving the specified model. A range of LLM models are deployed through vLLM that provides an efficient local inference engine for lower-latency model serving.
+
+**Agentic application runtime**
+The agentic runtime in KARECTL comprises a collection of services that provide an execution environment where agent-based applications can leverage capabilities that support the end-to-end lifecycle of an agent. These include:
+
+- Observability (Langfuse) to captures prompts and trace execution paths to support debugging, quality assurance and auditability
+- LLM UIs (OpenWebUI): Provides a secure interaction layer for researchers and platform engineers to use to communicate with LLM models and support human-in-the-loop agentic workflows
+- Model inference (vLLM): Provides a private model inference and serving engine that integrates with KARECTL's agentgateway service
+- Workflow Orchestration (n8n, MLflow) provides workflow automation for provisioning agent-based processes
+
+**TRE DevOps Agent Framework (Kagent)**
+KARECTL implements the Kagent framework as an application-level service to enable routine TRE platform tasks typically performed by a infrastructure engineer. It allows approved agents to interpret TRE platform context, assist with diagnostics, and propose or execute controlled remediation actions.
 
 ## Emerging Challenges
 
-**TODO**
-Map out the challenges of supporting AI-comformity from a TRE operator perspective
+### Ensuring Data Security & Privacy 
 
-### Ensuring Security, Privacy & Trust 
+Supporting AI-conformity materially increases the TRE attack surface. Kubernetes control planes, model-serving endpoints, vector stores, agent runtimes and workflow engines all introduce potential security vulnerabilities.
 
-Increase attack surface. K8s/LLM deployments ntroduce potential security vulnerabilities that need to be managed
-How should AI agents be governed? 
+At the same time, privacy risk evolves beyond traditional user access patterns. This is particularly the case where sensitive NHS datasets are fed into local inference models, captured in traces or cached as context to support model inference optimisation. For TRE operators, this means extending existing governance controls so they remain effective for AI-assisted and agent-driven workflows.
 
 ### Governing Agent Behaviour
 
-Relate to broader Q's around agents but how to control agents that are making decisions and execute actions in a TRE framework.. guardrails. Break-glass..
+Agentic systems introduce a different class of governance challenge because they can plan, decide, and execute multi-step actions with limited human intervention. Within a TRE, this raises practical questions around what an agent is permitted to do, what it is explicitly prevented from doing and how those boundaries are enforced at runtime. From an operator perspective, this requires policy-driven guardrails.
 
 ### Managing Costs
 
-- Large-scale AI infrastructure can become expensive very quick...how does this play against the notion that KARECTL is low cost 
-- Allow those teams to focus on higher-value engineering activities rather than repetitive operational tasks.
+Empowering researchers and TRE infrastructure engineers to develop and deploy agentic workloads requires new cost tracking and management capabilities. Cost management has to be treated as a core architectural concern for AI-conformant TREs. Practical controls include local model routing, workload scheduling and quotas, model right-sizing, and clear lifecycle policies for traces and artefacts.
 
+At the same time, one of the central opportunities of AI-conformant TREs is to use automation to offset operational burden. If implemented safely, infrastructure and support agents can reduce repetitive administration and incident triage effort, allowing platform teams to focus on higher-value engineering, assurance, and service improvement.
 
 ## Conclusion
 
-The shift in how we think about TREs has evolved significantly over the last 5 years.
+The shift in how we think about TREs has evolved significantly over the last 6 years.
 
 Historically, TREs designed primarily as secure environments for researchers to access sensitive data. Increasingly, however, we believethey are becoming platforms that should support a diverse ecosystem of participants, including researchers, analysts, clinicians, applications, AI models, and autonomous agents.
 
