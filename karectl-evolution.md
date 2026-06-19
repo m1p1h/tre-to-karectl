@@ -27,7 +27,7 @@ Building on that foundation, and through wider engagement with the UK’s health
 
 ![alt text](k8tre-arch.png)
 
-Through the adoption of open cloud-native technologies and modern CI/CD practices (including GitOps), K8TRE has provided a flexible, portable, and sustainable TRE foundation as an alternative to cloud-vendor frameworks. At the same time, demand at LTH is evolving: researchers, clinicians, developers, and healthcare administrators increasingly need TRE environments that can support AI-driven research and agent-based workflows. In response, we have begun to extend our focus beyond vendor-agnostic design to explore AI’s role in trusted research infrastructure, including the practical opportunities and challenges of building AI-conformant TREs. In this context, we see AI-conformance as an important characteristic for next-generation TREs, meaning AI research workloads and agentic workflows are supported under the same governance, security, and audit standards that apply to human-led research that relies on access to sensitive datasets.
+Through the adoption of open cloud-native technologies and modern CI/CD practices (including GitOps), K8TRE has provided a flexible, portable, and sustainable TRE foundation as an alternative to cloud-vendor frameworks. At the same time, demand at LTH is evolving: researchers, clinicians, developers, and healthcare administrators increasingly need TRE environments that can support AI-driven research and agent-based workflows. In response, we have begun to extend our focus beyond vendor-agnostic design to explore AI’s role in trusted research infrastructure, including the practical opportunities and chalSlenges of building AI-conformant TREs. In this context, we see AI-conformance as an important characteristic for next-generation TREs, meaning AI research workloads and agentic workflows are supported under the same governance, security, and audit standards that apply to human-led research that relies on access to sensitive datasets.
 
 >Comment: Will a lot of this be repeated in the DARE blog that we are meant to write as well? Maybe an early link to the TREvolution page, and a reference to K8TRE docs for the architecture diagram (or get rid of this architecture diagram and replace with KARECTL's later on.)
 
@@ -52,11 +52,13 @@ We are investigating a collection of cybersecurity-focused agents for TREs that 
 
 **TODO**
 
-KARECTL, LTH's implementation of K8TRE has been designed to provide a secure, scalable, AI-conformant TRE framework operators can deploy to support researcher and the agent workloads outlined above. 
+KARECTL, LTH's extension of K8TRE has been designed as a cloud-agnostic, scalable, AI-conformant secure analytics platform to support AI research, AI-assisted research and AI-enabled platform engineering.
 
 ![alt text](karectl-arch.png)
 
-We have extended KARECTL with the following technical capabilities:
+KARECTL has the following technical capabilities:
+
+>comment: Do we want to go into so much detail for the LinkedIn post? Or is this us planting the flag now to say we have already done this?
 
 **Local model provisioning and routing (LLM gateway, vLLM)**
 KARECTL's 'agentgateway' service provides a locally governed LLM gateway that allows agents operating within the TRE to connect to a collection of model inference backends through a single endpoint. In particular, the agentgateway integrates with KARECTL's agnostics services including keycloak for supporting JWT-based access control. This allows internal agents to perform authenticated OpenAPI requests that can be routed to a variety model inference pools. The gateway implements a dynamic content-based routing method that inspects the agent's request, extracts the model name requested (e.g. Qwen2.5) and attempts to route to an available pool serving the specified model. A range of LLM models are deployed through vLLM that provides an efficient local inference engine for lower-latency model serving.
@@ -85,6 +87,8 @@ At the same time, privacy risk evolves beyond traditional user access patterns. 
 Agentic systems introduce a different class of governance challenge because they can plan, decide, and execute multi-step actions with limited human intervention. Within a TRE, this raises practical questions around what an agent is permitted to do, what it is explicitly prevented from doing and how those boundaries are enforced at runtime. From an operator perspective, this requires policy-driven guardrails.
 
 ### Managing Costs
+
+>comment: Can we frame this as primarily using agents for operational efficiency with cost reduction as one of the benefits.
 
 Empowering researchers and TRE infrastructure engineers to develop and deploy agentic workloads requires new cost tracking and management capabilities. Cost management has to be treated as a core architectural concern for AI-conformant TREs. Practical controls include local model routing, workload scheduling and quotas, model right-sizing, and clear lifecycle policies for traces and artefacts.
 
